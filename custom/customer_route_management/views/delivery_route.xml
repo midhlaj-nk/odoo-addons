@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--Customer route action-->
+    <record id="delivery_route_action" model="ir.actions.act_window">
+        <field name="name">Delivery Route</field>
+        <field name="res_model">delivery.route</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to create new Delivery routes
+            </p>
+        </field>
+    </record>
+
+
+    <!--    menu items-->
+    <menuitem id="delivery_route_root"
+              name="Delivery Routes"/>
+
+    <menuitem id="routes_menu"
+              action="delivery_route_action"
+              name="Routes"
+              parent="delivery_route_root"/>
+
+    <menuitem id="report_menu"
+              action="route_report_wizard_view_action"
+              name="Report"
+              parent="delivery_route_root"/>
+
+
+</odoo>

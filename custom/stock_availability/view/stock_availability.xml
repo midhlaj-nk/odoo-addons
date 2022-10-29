@@ -1,0 +1,25 @@
+<odoo>
+    <template id="stock_availability"
+              inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('oe_product_image')]"
+               position="after">
+
+            <div>
+
+            <!-- limited stock-->
+                <t t-if="product.qty_available &#60; 5 and product.qty_available!=0">
+                    <span class="badge o_wslides_channel_tag o_tag_color_2">
+                    Limited Stock
+                </span>
+                </t>
+             <!--limited stock end -->
+                <t t-if="product.qty_available == 0 and product.detailed_type == 'product' ">
+                    <span class="badge o_wslides_channel_tag o_tag_color_1">Out of stock</span>
+                </t>
+
+            </div>
+
+        </xpath>
+    </template>
+</odoo>
+

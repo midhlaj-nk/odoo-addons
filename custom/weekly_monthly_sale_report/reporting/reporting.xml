@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    wizard-->
+
+    <record id="sale_monthly_weekly_reporting_form" model="ir.ui.view">
+        <field name="name">Sale reporting</field>
+        <field name="model">sale.monthly.weekly.reporting</field>
+        <field name="arch" type="xml">
+            <form>
+                <group class="oe_title">
+                    <field name="customer_ids" widget="many2many_tags"/>
+                    <field name="sales_team_id"/>
+                    <field name="week_month" />
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Print PDF"
+                            type="object" class="btn-primary"/>
+
+                </footer>
+            </form>
+        </field>
+    </record>
+    <!--wizard end-->
+
+    <!--    report action-->
+    <record id="monthly_weekly_report_action" model="ir.actions.act_window">
+        <field name="name">Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.monthly.weekly.reporting</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_monthly_weekly_reporting_form"/>
+        <field name="target">new</field>
+    </record>
+    <!--    report action end-->
+
+    <!--    report action pdf-->
+    <record id="monthly_weekly_report_pdf_action" model="ir.actions.report">
+        <field name="name">Sales Reports</field>
+        <field name="model">sale.monthly.weekly.reporting</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">weekly_monthly_sale_report.sales_report_template</field>
+        <field name="report_file">weekly_monthly_sale_report.sales_report_template</field>
+    </record>
+    <!--    report action pdf end-->
+
+<!--        report action xlsx-->
+<!--    <record id="action_xlsx_report" model="ir.actions.act_window">-->
+<!--        <field name="name">Excel</field>-->
+<!--        <field name="res_model">vehicle.rental.reporting</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+<!--        report action xlsx end-->
+
+    <!--menu item -->
+
+
+        <menuitem id="monthly_weekly_reporting"
+            name="Monthly/Weekly Reporting"
+            action="monthly_weekly_report_action"
+            parent="sale.menu_sale_report"
+            />
+
+    <!--    menuitem end-->
+
+
+
+</odoo>
+

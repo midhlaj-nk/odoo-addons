@@ -1,0 +1,9 @@
+<odoo>
+<template id="social_media_snippet" inherit_id="website.snippets" name="Place into snippet bar">
+    <xpath expr="//div[@id='snippet_feature']" position="inside">
+        <div class="o_panel_body">
+            <t t-snippet="elearning_snippet.elearning_template"/>
+        </div>
+    </xpath>
+</template>
+    </odoo>

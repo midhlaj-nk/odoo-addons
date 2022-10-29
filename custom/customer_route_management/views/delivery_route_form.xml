@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- Form View for vehicle -->
+        <record id="delivery_route_form_view" model="ir.ui.view">
+            <field name="name">Delivery route Form View</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+
+                    </header>
+                    <sheet>
+
+                        <group string="Delivery Route">
+                            <group>
+                                <field name="location" string="Name"/>
+
+                            </group>
+                            <group>
+
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Route Lines">
+                                <field name="delivery_location_ids">
+                                    <tree>
+                                        <field name="id"
+                                               widget="handle"/>
+                                        <field name="routes"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="routes"
+                                                   attrs="{'readonly': [('id', '!=', False)]}"/>
+                                            <field name="customer_details"
+                                                   string="Customers"
+                                                   attrs="{'invisible': [('customer_details','=',[])]}">
+                                                <tree>
+                                                    <field name="id"
+                                                           widget="handle"/>
+                                                    <field name="display_name"
+                                                           string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

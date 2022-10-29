@@ -1,0 +1,267 @@
+<odoo>
+    <template id="route_template">
+        <t t-call="web.html_container">
+
+
+            <t t-if="form_data.get('show_due_amount')==False">
+                <style>
+                    #table_due_false {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                    text-align: left;
+                    border: 1px solid;
+
+
+                    }
+
+                    td, th {
+                    width: 250px;
+                    text-align: left;
+                    padding: 8px;
+                    border-bottom: 0.5px solid #DFDFDF;
+                    }
+
+
+                    h1 {text-align: center;}
+
+                    p.light {
+                    font-weight: bold;
+                    font-family: arial, sans-serif;
+
+                    <!--                font-style: italic;-->
+                    <!--                text-decoration: underline;-->
+                    font-size: 18px;
+
+
+                    }
+                </style>
+                <t t-foreach="location" t-as="loc">
+                    <h1>
+                        <t t-esc="loc"/>
+                    </h1>
+                    <t t-foreach="routes" t-as="route_item">
+                        <table id="table_due_false">
+                            <t t-set="route_value" t-value="0"/>
+                            <t t-foreach="query" t-as="que">
+                                <t t-if="que['route'] == route_item and que['locname'] == loc">
+                                    <t t-if="route_value==0">
+                                        <p class="light">
+                                            <t t-esc="que['route']"/>
+                                        </p>
+                                        <t t-set="route_value" t-value="1"/>
+                                    </t>
+                                    <tr class="bg-light">
+
+                                        <td>
+                                            <t t-esc="que['customer']"/>
+
+                                        </td>
+                                        <td>
+                                            <t t-esc="que['phone']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="que['street']"/>
+                                            <t t-esc="que['street2']"/>
+                                            <t t-esc="que['city']"/>
+                                            <br/>
+                                            <t t-esc="que['zip']"/>
+                                            <t t-esc="que['country']"/>
+                                            <br/>
+                                            <t t-esc="que['email']"/>
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </table>
+                    </t>
+                </t>
+
+
+            </t>
+            <t t-else="form_data.get('show_due_amount')==True">
+                <style>
+                    #table_due_true {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                    text-align: left;
+                    color:black;
+
+
+                    }
+                    tr.customer_details{
+                    color:purple;
+                    }
+
+                    td, th {
+                    width: 250px;
+                    text-align: left;
+                    padding: 8px;
+                    border-bottom: 0.5px solid #DFDFDF;
+                    }
+
+
+                    h1 {text-align: center;}
+
+                    p.light {
+                    font-weight: bold;
+                    font-family: arial, sans-serif;
+
+                    <!--                font-style: italic;-->
+                    <!--                text-decoration: underline;-->
+                    font-size: 18px;
+
+
+                    }
+                </style>
+                <t t-set="cust_incr" t-value="1"/>
+                <t t-foreach="location" t-as="loc">
+                    <h1>
+                        <t t-esc="loc"/>
+                    </h1>
+
+                    <t t-foreach="routes" t-as="route_item">
+                        <table id="table_due_true">
+                            <t t-set="route_value" t-value="0"/>
+                            <t t-set="cust_value" t-value="0"/>
+                            <!--                            <h1>-->
+                            <!--                                <t t-esc="query[0]['customer']"/>-->
+                            <!--                            </h1>-->
+
+
+                            <t t-foreach="query" t-as="que">
+<!--                               <t t-esc="query[cust_incr]['customer']"/> </h1>-->
+<!--                                <t t-esc="cust_incr"/>-->
+                                <t t-if="que['route'] == route_item and que['locname'] == loc">
+                                    <t t-if="route_value==0">
+                                        <p class="light">
+                                            <t t-esc="que['route']"/>
+                                        </p>
+                                        <t t-set="route_value" t-value="1"/>
+                                    </t>
+                                    <t t-if="que['customer'] != cust_value">
+                                        <tr class="customer_details">
+                                            <td>
+
+                                                <t t-esc="que['customer']"
+                                                   t-value="que['customer']"/>
+
+                                            </td>
+                                            <td>
+                                                <t t-esc="que['phone']"/>
+                                            </td>
+
+                                            <td>
+                                                <t t-esc="que['street']"/>
+                                                <t t-esc="que['street2']"/>
+                                                <t t-esc="que['city']"/>
+                                                <br/>
+                                                <t t-esc="que['zip']"/>
+                                                <t t-esc="que['country']"/>
+                                                <br/>
+                                                <t t-esc="que['email']"/>
+                                                <br/>
+                                            </td>
+
+                                        </tr>
+                                        <t t-set="cust_value"
+                                           t-value="que['customer']"/>
+                                        <t t-set="amount_sum" t-value="0"/>
+                                        <t t-set="show_invoice_table"
+                                           t-value="0"/>
+
+                                    </t>
+
+                                    <t t-if="que['invoice'] and que['inv_date'] and que['amt'] ">
+
+                                        <t t-if="show_invoice_table==0">
+                                            <t t-if="form_data.get('total_due_only')==False">
+                                            <tr>
+                                                <th>Invoice Number</th>
+                                                <th>Due Date</th>
+                                                <th>Amount Due</th>
+                                            </tr>
+                                            <t t-set="show_invoice_table"
+                                               t-value="1"/>
+
+                                        <tr>
+
+                                            <td>
+                                                <t t-esc="que['invoice']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="que['inv_date']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="que['amt']"/>
+                                            </td>
+
+
+
+                                        </tr>
+                                                </t>
+                                            </t>
+                                            <t t-set="amount_sum"
+                                                   t-value="amount_sum+que['amt']"/>
+
+
+                                    </t>
+<!--                                    <tr>-->
+<!--                                        <t t-esc="d_length"/>-->
+<!--                                    </tr>-->
+<!--                                    <span t-esc="d_length"/>-->
+<!--                                    <span t-esc="cust_incr"/>-->
+                                    <t t-if="cust_incr==d_length">
+                                        <t t-if="amount_sum != 0">
+                                                <tr>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <td>
+
+                                                    </td>
+
+                                                    <th>
+                                                        <span t-esc="amount_sum"/>
+                                                    </th>
+
+                                                </tr>
+                                            </t>
+                                    </t>
+                                    <t t-if="cust_incr &lt;d_length">
+                                        <t t-if="que['customer']!= query[cust_incr]['customer']">
+                                            <t t-if="amount_sum != 0">
+                                                <tr>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <td>
+
+                                                    </td>
+
+                                                    <th>
+                                                        <span t-esc="amount_sum"/>
+                                                    </th>
+
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-set="cust_incr" t-value="cust_incr + 1"/>
+
+                                </t>
+
+                            </t>
+                        </table>
+                    </t>
+                </t>
+
+
+
+
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--material request action-->
+    <record id="material_request_action" model="ir.actions.act_window">
+        <field name="name">Material Requests</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--material request action end-->
+
+    <!--    menu item material request main-->
+    <menuitem id="material_request_root"
+              name="Material Request"/>
+
+    <menuitem id="material_request"
+              action="material_request_action"
+              name="Material Request"
+              parent="material_request_root"/>
+    <!--    menu item material request main end-->
+
+    <!--    sequence number   -->
+    <data>
+        <record id="seq_rental_request" model="ir.sequence">
+            <field name="name">Material request Sequence</field>
+            <field name="code">material.request</field>
+            <field name="prefix">MR</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+    <!--    sequence number end  -->
+
+
+</odoo>

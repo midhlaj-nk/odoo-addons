@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+
+<!--    <record id="fleet_inherit_form" model="ir.ui.view">-->
+<!--        <field name="name">fleet_inherit_form</field>-->
+<!--        <field name="model">stock.scrap</field>-->
+<!--        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--        <field name="origin" position="after">-->
+<!--            <field name="sample"/>-->
+<!--        </field>-->
+
+<!--		</field>-->
+<!--    </record>-->
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+  <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem"
+     t-inherit-mode="extension" owl="1">
+   <xpath expr="//t[@t-esc='props.product.display_name']" position="after">
+       <t t-if="props.product.spanish_product">
+       <br/>
+           <span>Spanish Name: <t t-esc="props.product.spanish_product"/></span>
+       </t>
+   </xpath>
+</t>
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderLinesReceipt"
+       t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('responsive-price')]" position="after">
+               <t t-if="line.spanish_product">
+
+                <div style="font-weight:bold;">Spanish Name:
+                    <t t-esc='line.spanish_product'/>
+                </div>
+               </t>
+
+        </xpath>
+    </t>
+
+</templates>

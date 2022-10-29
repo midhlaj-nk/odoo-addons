@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Spanish Product field inherit -->
+    <record id="spanish_product_inherit_mrp" model="ir.ui.view">
+        <field name="name">Spanish Product Name</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='detailed_type']" position="after">
+                <field name="spanish_product"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

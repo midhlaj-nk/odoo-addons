@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+customer_route_management.access_delivery_route,access_delivery_route,customer_route_management.model_delivery_route,base.group_user,1,1,1,1
+customer_route_management.access_delivery_route_location,access_delivery_route_location,customer_route_management.model_delivery_route_location,base.group_user,1,1,1,1
+customer_route_management.access_route_report_wizard,access_route_report_wizard,customer_route_management.model_route_report_wizard,base.group_user,1,1,1,1

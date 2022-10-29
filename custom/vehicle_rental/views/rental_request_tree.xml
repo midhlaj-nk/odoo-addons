@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <record id="rental_tree_view" model="ir.ui.view">
+            <field name="name">rental.request.tree.view</field>
+            <field name="model">rental.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="vehicle_id"/>
+                    <field name="period"/>
+
+
+                    <field name="rent_amount"/>
+                    <field name="state" widget="badge"
+                    decoration-success="state =='confirm'"
+                    decoration-primary="state =='draft'"
+                    decoration-muted="state =='returned'"
+                    decoration-info="state == 'invoiced'"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+
+</odoo>

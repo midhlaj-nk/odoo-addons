@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="rental_request_form_view" model="ir.ui.view">
+            <field name="name">rental.request.form.view</field>
+            <field name="model">rental.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="button_confirm" string="Confirm"
+                                type="object" class="oe_highlight"
+                                states="draft"/>
+                        <button name="button_return" string="Return"
+                                type="object" class="oe_highlight"
+                                attrs="{'invisible':[('state','=','draft')]}"/>
+                        <button name="invoice" string="Create Invoice"
+                                type="object" class="oe_highlight"
+                                states="confirm"
+                        />
+
+
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirm,returned"
+                               options="{'clickable':'1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="invoice_button2">
+                            <button type="object" name="invoice_button"
+                                    class="oe_stat_button"
+                                    icon="fa-pencil-square-o"
+                                    attrs="{'invisible': [('count', '=',0)]}">
+                                <field name="count" string="Invoices"
+                                       widget="statinfo"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Paid"
+                                attrs="{'invisible':[('state','!=','invoiced')]}"/>
+
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+
+                            <group string="Rental Request">
+                                <field name="customer"
+                                       widget="res_partner_many2one"
+                                       context="{'res_partner_search_mode': 'customer', 'show_address': 1}"
+                                       options="{&quot;always_reload&quot;: True}"/>
+                                <field name="vehicle_id"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="rent_amount" force_save="1"/>
+                                <field name="period_type"/>
+
+                            </group>
+                            <group string="Dates">
+                                <field name="request_date"/>
+                                <field name="from_date"/>
+                                <field name="to_date"/>
+                                <field name="period"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

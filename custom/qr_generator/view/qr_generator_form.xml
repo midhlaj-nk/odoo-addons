@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!--qr code action-->
+        <record id="qr_generator_action" model="ir.actions.act_window">
+            <field name="name">Qr Generator</field>
+            <field name="res_model">qr.generator</field>
+            <field name="view_mode">form</field>
+        </record>
+        <!--qr code end-->
+        <!-- Form View for qr generator -->
+        <record id="qr_generator_form" model="ir.ui.view">
+            <field name="name">qr.generator.form.view</field>
+            <field name="model">qr.generator</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="text"/>
+                    </group>
+                    <group>
+                        <field name="qr_code" widget="image" class="oe_avatar"
+                              />
+                    </group>
+                    <footer>
+                        <button string="Generate" type="object" name="generate"
+                                class="btn-primary"/>
+                        <button string="Download" type="object" name="download"
+                                class="btn-primary"/>
+                        <button string="Reset" type="object" name="reset"
+                                class="btn-secondary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+<!--form end-->
+
+        <!--report action-->
+        <record id="action_image" model="ir.actions.report">
+        <field name="name">QR Code</field>
+        <field name="model">qr.generator</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">qr_generator.qr_code_template</field>
+        <field name="report_file">qr_generator.qr_code_template</field>
+    </record>
+<!--        report action end-->
+    </data>
+</odoo>
+

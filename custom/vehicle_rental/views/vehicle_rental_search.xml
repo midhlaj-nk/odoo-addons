@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="create_rental_vehicle_search" model="ir.ui.view">
+        <field name="name">create_rental_vehicle_search</field>
+        <field name="model">rental.vehicle</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="state"/>
+                <filter string="Available" name="avail"
+                        domain="[('state', '=', 'available')]" />
+
+                <filter string="Not Available" name="noavail"
+                        domain="[('state', '=', 'not available')]"/>
+
+                <group expand="1" string="Group By">
+                    <filter name="name" context="{'group_by':'name'}"/>
+                    <filter name="model_year" context="{'group_by':'model_year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+</odoo>

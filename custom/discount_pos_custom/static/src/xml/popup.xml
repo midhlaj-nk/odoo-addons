@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="Discount_custom_popup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-discount" >
+                <p class="title">
+                    <t t-esc="props.title" />
+                </p>
+                <span class="body">
+                    <!-- Adding text field-->
+                    <div>
+                        <input type="text" id="discount" />
+                    </div>
+                </span>
+                <div class="footer">
+                    <div class="button confirm"  id="confirm_button" t-on-click="confirm">
+                        <t t-esc="props.confirmText" />
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText" />
+                        </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

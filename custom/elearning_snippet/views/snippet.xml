@@ -1,0 +1,47 @@
+<odoo>
+<template id="elearning_template" name="eLearning">
+
+    <section class="s_three_columns o_cc o_cc2 pt32 pb32 elearning_snippet" data-vcss="001">
+        <div class="container">
+
+            <div class="row d-flex align-items-stretch">
+                <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+                    <div class="card bg-white h-100" >
+<!--                        <a href="" id="href1" type="hidden">-->
+                        <span class="card-img-top" id="image_1" />
+                        <div class="card-body" id="href1">
+                            <h3 class="card-title" id="course_name1">Feature One</h3>
+                            <p class="card-text" id="description_1"> </p>
+                            <span id="href1"></span>
+                        </div>
+<!--                        </a>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+                    <div class="card bg-white h-100">
+                        <span class="card-img-top" id="image_2"  />
+                        <div class="card-body">
+                            <h3 class="card-title" id="course_name2" >Feature Two</h3>
+                            <p class="card-text" id="description_2"> </p>
+                            <span id="href2"></span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+                    <div class="card bg-white h-100">
+                        <span class="card-img-top" id="image_3" />
+                        <div class="card-body">
+                            <h3 class="card-title" id="course_name3">Feature Three</h3>
+                            <p class="card-text" id="description_3"><em>rounded corner</em> style.</p>
+                            <span id="href3"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</template>
+    </odoo>

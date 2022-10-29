@@ -1,0 +1,331 @@
+<odoo>
+    <template id="sales_report_template">
+        <t t-call="web.html_container">
+            <style>
+                table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                }
+
+                td, th {
+
+                text-align: left;
+                padding: 8px;
+                }
+
+                tr:nth-child(even) {
+                background-color: #dddddd;
+                }
+                h2 {text-align: center;}
+            </style>
+            <t t-if="query">
+                <t t-if="form_data.get('week_month')">
+                    <t t-if="form_data.get('week_month')=='week'">
+                    <p>week</p>
+                           <div class="page">
+
+                        <h2>Sales Report</h2>
+                    </div>
+                    <table>
+                        <t t-if="form_data.get('customer_ids')">
+                            <tr>
+                                <td>Customer</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-foreach="customer" t-as="li">
+                                        <t t-esc="li" style="float:right;"/>
+                                        <br/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('sales_team_id')">
+                            <tr>
+                                <td>Sales Team</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['sales_team_id'][1]"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('week_month')">
+                            <tr>
+                                <td>Week/Month</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['week_month']"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('date_from')">
+                            <tr>
+                                <td>Date from</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['date_from']"/>
+
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('date_to')">
+                            <tr>
+                                <td>Date to</td>
+                                <td>:</td>
+                                <td>
+
+                                    <t t-esc="form_data['date_to']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                        <table style="width:100%" class="table table-sm">
+                        <thead>
+                            <tr style="height:60px">
+                                <th>Sl. No</th>
+                                <th>Sale order</th>
+                                <th>Customer</th>
+                                <th>Sales Team</th>
+                                <th>Total Amount</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <t t-set="count" t-value="0"/>
+                        <t t-foreach="query" t-as="q">
+                            <t t-set="count" t-value="count + 1"/>
+                            <tr style="height:50px" class="bg-light">
+                                <td>
+                                    <t t-esc="count"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['sale_order_ref']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['cust']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['sales_team']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['total_amount']"/>
+                                </td>
+                                  <td>
+                                    <t t-esc="q['state']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['week']"/>
+                                </td>
+
+
+
+                            </tr>
+                        </t>
+                    </table>
+
+
+                    </t>
+                    <t t-else="">
+                        <p>month</p>
+                        <div class="page">
+
+                        <h2>Sales Report</h2>
+                    </div>
+                    <table>
+                        <t t-if="form_data.get('customer_ids')">
+                            <tr>
+                                <td>Customer</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-foreach="customer" t-as="li">
+                                        <t t-esc="li" style="float:right;"/>
+                                        <br/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('sales_team_id')">
+                            <tr>
+                                <td>Sales Team</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['sales_team_id'][1]"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('week_month')">
+                            <tr>
+                                <td>Week/Month</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['week_month']"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('date_from')">
+                            <tr>
+                                <td>Date from</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['date_from']"/>
+
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('date_to')">
+                            <tr>
+                                <td>Date to</td>
+                                <td>:</td>
+                                <td>
+
+                                    <t t-esc="form_data['date_to']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                        <table style="width:100%" class="table table-sm">
+                        <thead>
+                            <tr style="height:60px">
+                                <th>Sl. No</th>
+                                <th>Sale order</th>
+                                <th>Customer</th>
+                                <th>Sales Team</th>
+                                <th>Total Amount</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <t t-set="count" t-value="0"/>
+                        <t t-foreach="query" t-as="q">
+                            <t t-set="count" t-value="count + 1"/>
+                            <tr style="height:50px" class="bg-light">
+                                <td>
+                                    <t t-esc="count"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['sale_order_ref']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['cust']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['sales_team']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['total_amount']"/>
+                                </td>
+                                  <td>
+                                    <t t-esc="q['state']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['month']"/>
+                                </td>
+
+
+
+                            </tr>
+                        </t>
+                    </table>
+                    </t>
+                </t>
+                <t t-else="">
+
+                    <div class="page">
+
+                        <h2>Sales Report</h2>
+                    </div>
+                    <table>
+                        <t t-if="form_data.get('customer_ids')">
+                            <tr>
+                                <td>Customer</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-foreach="customer" t-as="li">
+                                        <t t-esc="li" style="float:right;"/>
+                                        <br/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('sales_team_id')">
+                            <tr>
+                                <td>Sales Team</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['sales_team_id'][1]"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('week_month')">
+                            <tr>
+                                <td>Week/Month</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['week_month']"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('date_from')">
+                            <tr>
+                                <td>Date from</td>
+                                <td>:</td>
+                                <td>
+                                    <t t-esc="form_data['date_from']"/>
+
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-if="form_data.get('date_to')">
+                            <tr>
+                                <td>Date to</td>
+                                <td>:</td>
+                                <td>
+
+                                    <t t-esc="form_data['date_to']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <table style="width:100%" class="table table-sm">
+                        <thead>
+                            <tr style="height:60px">
+                                <th>Sl. No</th>
+                                <th>Sale order</th>
+                                <th>Customer</th>
+                                <th>Sales Team</th>
+                                <th>Total Amount</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <t t-set="count" t-value="0"/>
+                        <t t-foreach="query" t-as="q">
+                            <t t-set="count" t-value="count + 1"/>
+                            <tr style="height:50px" class="bg-light">
+                                <td>
+                                    <t t-esc="count"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['sale_order_ref']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['customer']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['sales_team']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['total_amount']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="q['state']"/>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </table>
+                </t>
+            </t>
+
+
+        </t>
+
+    </template>
+</odoo>

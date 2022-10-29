@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    wizard-->
+    <record id="vehicle_rental_report_view_form" model="ir.ui.view">
+        <field name="name">vehicle.rental.reporting.form</field>
+        <field name="model">vehicle.rental.reporting</field>
+        <field name="arch" type="xml">
+            <form string="Rental Reporting">
+                <group class="oe_title">
+                    <field name="vehicle_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Print PDF"
+                            type="object" class="btn-primary"/>
+                    <button name="excel_report" string="Print xls"
+                            type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <!--wizard end-->
+
+    <!--    report action-->
+    <record id="vehicle_rental_report_action" model="ir.actions.act_window">
+        <field name="name">Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vehicle.rental.reporting</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="vehicle_rental_report_view_form"/>
+        <field name="target">new</field>
+    </record>
+    <!--    report action end-->
+
+    <!--    report action pdf-->
+    <record id="action_report_vehicle_rental" model="ir.actions.report">
+        <field name="name">Vehicle Order</field>
+        <field name="model">vehicle.rental.reporting</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">vehicle_rental.report_vehicle_rental</field>
+        <field name="report_file">vehicle_rental.report_vehicle_rental</field>
+    </record>
+    <!--    report action pdf end-->
+
+    <!--    report action xlsx-->
+    <record id="action_xlsx_report" model="ir.actions.act_window">
+        <field name="name">Excel</field>
+        <field name="res_model">vehicle.rental.reporting</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!--    report action xlsx end-->
+
+    <!--menu item -->
+    <menuitem id="menu_rent_reporting"
+              action="vehicle_rental_report_action"
+              name="Reporting"
+              parent="vehicle_rental_root"/>
+    <menuitem id="menu_rent_reporting_sub"
+              action="vehicle_rental_report_action"
+              name="Vehicle Reporting"
+              parent="menu_rent_reporting"/>
+    <!--    menuitem end-->
+
+    <record id="request_web_menu" model="website.menu">
+           <field name="name">Rental Request</field> <!-- Name of the menu-->
+           <field name="url">/rental_request</field>
+           <field name="parent_id" ref="website.main_menu"/>
+              <!--sequence of the menu-->
+       </record>
+
+</odoo>
+

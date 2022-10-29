@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+  <t t-name="QrSystray">
+      <div class="new_icon">
+             <div class="icon_div">
+                 <div class="toggle-icon" role="button">
+                     <i id='qr_gen' class="fa fa-qrcode" role="img" aria-label="Generate Qr-Code"/>
+                 </div>
+             </div>
+      </div>
+  </t>
+</templates>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="fleet_inherit_form" model="ir.ui.view">
+        <field name="name">invoice_inherit_form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+        <field name="payment_reference" position="before">
+            <field name="sale_order_ids" widget="many2many_tags"/>
+        </field>
+
+		</field>
+    </record>
+</odoo>

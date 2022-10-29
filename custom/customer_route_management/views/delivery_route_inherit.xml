@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_partner_delivery_route_inherit" model="ir.ui.view">
+        <field name="name">res partner delivery route inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+       <xpath expr="//group[@name='misc']" position="after">
+           <group name="location" string="Location">
+            <field name="routes_inherit_id" string="Location"/>
+           </group>
+                   </xpath>
+
+        </field>
+    </record>
+</odoo>
+

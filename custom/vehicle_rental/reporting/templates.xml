@@ -1,0 +1,79 @@
+<odoo>
+    <template id="report_vehicle_rental">
+        <t t-call="web.html_container">
+
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Vehicle Rental Report</h2>
+                </div>
+                <table>
+                    <tr>
+                        <td>Vehicle</td>
+                        <td>:</td>
+                        <td>
+                            <t t-if="form_data.get('vehicle_id')">
+                                <t t-esc="form_data['vehicle_id'][1]"/>
+                            </t>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date from</td>
+                        <td>:</td>
+                        <td>
+                            <t t-if="form_data.get('date_from')">
+                                <t t-esc="form_data['date_from']"/>
+                            </t>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date to</td>
+                        <td>:</td>
+                        <td>
+                            <t t-if="form_data.get('date_from')">
+                                <t t-esc="form_data['date_to']"/>
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:100%" class="table table-sm">
+                    <thead>
+                        <tr style="height:60px">
+                            <th>Sl. No</th>
+                            <th>Customer</th>
+                            <th>Vehicle Name</th>
+                            <th>Period Type</th>
+                            <th>Rent amount</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <t t-set="count" t-value="0"/>
+                    <t t-foreach="query" t-as="q">
+                        <t t-set="count" t-value="count + 1"/>
+                        <tr style="height:50px" class="bg-light">
+                            <td>
+                                <t t-esc="count"/>
+                            </td>
+                            <td>
+                                <t t-esc="q['customer']"/>
+                            </td>
+                            <td>
+                                <t t-esc="q['name']"/>
+                            </td>
+                            <td>
+                                <t t-esc="q['period_type']"/>
+                            </td>
+                            <td>
+                                <t t-esc="q['rent_amount']"/>
+                            </td>
+                               <td>
+                                <t t-esc="q['state']"/>
+                            </td>
+
+                        </tr>
+                    </t>
+                </table>
+
+            </t>
+        </t>
+    </template>
+</odoo>

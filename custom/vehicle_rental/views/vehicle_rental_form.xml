@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- Form View for vehicle -->
+        <record id="vehicle_rental_form_view" model="ir.ui.view">
+            <field name="name">vehicle.rental.form.view</field>
+            <field name="model">rental.vehicle</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!--                     <button name="warnlatecheck" string="Confirm" type="object" class="oe_highlight"/>-->
+
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="available,not available,sold"
+                               options="{'clickable':'1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="get_vehicles"
+                                    class="oe_stat_button" icon="fa-car">
+                                <field name="vehicle_request_specific"
+                                       string="Requests" widget="statinfo"/>
+                            </button>
+                        </div>
+
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+
+                        <group string="Vehicle Details">
+                            <group>
+                                <field name="model_id"/>
+                                <field name="brand_id"/>
+
+                            </group>
+                            <group>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="reg_date"/>
+                                <field name="model_year"/>
+
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Rent Request">
+                                <field name="requests_inpage"/>
+<!--                                       context="{'not available':state}"-->
+                            </page>
+                            <page string="Rent Charges">
+                                <field name="rentcharge_ids">
+                                    <tree>
+                                        <field name="period_type"/>
+                                        <field name="rent_amount_prtype"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="period_type"/>
+                                            <field name="currency_id"
+                                                   invisible="1"/>
+                                            <field name="rent_amount_prtype"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

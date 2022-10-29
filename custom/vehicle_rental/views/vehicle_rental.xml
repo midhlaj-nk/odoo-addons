@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--rental vehicle action-->
+    <record id="create_rental_vehicle_action" model="ir.actions.act_window">
+        <field name="name">Rental Vehicle</field>
+        <field name="res_model">rental.vehicle</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_avail': 1}</field>
+
+    </record>
+    <!--rental vehicle end-->
+    <!--rental request action end-->
+
+    <record id="rental_request_action" model="ir.actions.act_window">
+        <field name="name">Rental Requests</field>
+        <field name="res_model">rental.request</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+    <!--rental request action end-->
+
+
+    <!--    menu item Vehicle Rental main-->
+    <menuitem id="vehicle_rental_root"
+              name="Vehicle Rental"/>
+    <!--    menu item Vehicle Rental main end-->
+
+    <!--    menu item Rent Vehicle-->
+    <menuitem id="rent_vehicles"
+              action="create_rental_vehicle_action"
+              name="Rent Vechicles"
+              parent="vehicle_rental_root"/>
+    <!--    menu item Rent Vehicle end-->
+
+    <!--    Rental Request menu-->
+    <menuitem id="rent_request"
+              action="rental_request_action"
+              name="Rental Request"
+              parent="vehicle_rental_root"/>
+
+    <!--rental request menu end-->
+
+
+
+
+    <!--    sequence number rental request-->
+    <data>
+        <record id="seq_rental_request" model="ir.sequence">
+            <field name="name">Rental request Sequence</field>
+            <field name="code">rental.request</field>
+            <field name="prefix">RV</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+    <!--    sequence number rental request end-->
+
+
+</odoo>
